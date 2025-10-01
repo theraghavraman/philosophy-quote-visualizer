@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy Quote Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&family=Lora:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Philosophy Quote Visualizer</h1>
+                <div class="header-controls">
+                    <button class="btn btn--secondary btn--sm" id="favoritesBtn">
+                        <span class="icon">♥</span>
+                        Favorites (<span id="favoritesCount">0</span>)
+                    </button>
+                    <button class="btn btn--outline btn--sm" id="themeToggle">
+                        <span class="theme-icon">☀</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application -->
+    <main class="main">
+        <div class="container">
+            <div class="app-layout">
+                <!-- Quote Display Section -->
+                <section class="quote-section">
+                    <div class="quote-container" id="quoteContainer">
+                        <div class="quote-background" id="quoteBackground">
+                            <div class="quote-content" id="quoteContent">
+                                <blockquote class="quote-text" id="quoteText">
+                                    The unexamined life is not worth living.
+                                </blockquote>
+                                <cite class="quote-author" id="quoteAuthor">— Socrates</cite>
+                                <div class="quote-school" id="quoteSchool">Ancient Greek Philosophy</div>
+                            </div>
+                        </div>
+                        <button class="favorite-heart" id="favoriteHeart" title="Add to Favorites">
+                            <span class="heart-icon">♡</span>
+                        </button>
+                    </div>
+
+                    <!-- Quote Navigation -->
+                    <div class="quote-nav">
+                        <button class="btn btn--outline" id="prevQuote">← Previous</button>
+                        <button class="btn btn--primary" id="randomQuote">New Quote</button>
+                        <button class="btn btn--outline" id="nextQuote">Next →</button>
+                    </div>
+                </section>
+
+                <!-- Customization Panel -->
+                <aside class="customization-panel" id="customizationPanel">
+                    <div class="panel-header">
+                        <h3>Customize Your Quote</h3>
+                        <button class="panel-toggle" id="panelToggle">⚙</button>
+                    </div>
+
+                    <div class="panel-content" id="panelContent">
+                        <!-- Background Section -->
+                        <div class="control-section">
+                            <h4>Background</h4>
+                            <div class="background-grid" id="backgroundGrid">
+                                <!-- Background options will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Typography Section -->
+                        <div class="control-section">
+                            <h4>Typography</h4>
+                            <div class="typography-controls">
+                                <div class="form-group">
+                                    <label class="form-label">Font Family</label>
+                                    <select class="form-control" id="fontFamily">
+                                        <option value="'Playfair Display', serif">Playfair Display</option>
+                                        <option value="'Roboto', sans-serif">Roboto</option>
+                                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                                        <option value="'Lora', serif">Lora</option>
+                                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                                        <option value="'Crimson Text', serif">Crimson Text</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Font Size</label>
+                                    <select class="form-control" id="fontSize">
+                                        <option value="24">Small</option>
+                                        <option value="32" selected>Medium</option>
+                                        <option value="40">Large</option>
+                                        <option value="48">Extra Large</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Font Weight</label>
+                                    <select class="form-control" id="fontWeight">
+                                        <option value="300">Light</option>
+                                        <option value="400" selected>Normal</option>
+                                        <option value="600">Bold</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Text Alignment</label>
+                                    <select class="form-control" id="textAlign">
+                                        <option value="left">Left</option>
+                                        <option value="center" selected>Center</option>
+                                        <option value="right">Right</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Text Color</label>
+                                    <div class="color-picker" id="colorPicker">
+                                        <div class="color-swatch active" data-color="#ffffff" style="background: #ffffff; border: 2px solid #ccc;"></div>
+                                        <div class="color-swatch" data-color="#000000" style="background: #000000;"></div>
+                                        <div class="color-swatch" data-color="#2c3e50" style="background: #2c3e50;"></div>
+                                        <div class="color-swatch" data-color="#34495e" style="background: #34495e;"></div>
+                                        <div class="color-swatch" data-color="#e74c3c" style="background: #e74c3c;"></div>
+                                        <div class="color-swatch" data-color="#f39c12" style="background: #f39c12;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Layout Section -->
+                        <div class="control-section">
+                            <h4>Layout</h4>
+                            <div class="form-group">
+                                <label class="form-label">Quote Position</label>
+                                <select class="form-control" id="quotePosition">
+                                    <option value="flex-start">Top</option>
+                                    <option value="center" selected>Center</option>
+                                    <option value="flex-end">Bottom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn--primary" id="downloadBtn">📥 Download Image</button>
+                <button class="btn btn--secondary" id="shareTwitter">🐦 Share on Twitter</button>
+                <button class="btn btn--secondary" id="copyText">📋 Copy Text</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Favorites Modal -->
+    <div class="modal hidden" id="favoritesModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Favorite Quotes</h2>
+                <button class="modal-close" id="closeFavorites">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="favoritesList" class="favorites-list">
+                    <!-- Favorites will be populated by JavaScript -->
+                </div>
+                <div class="favorites-actions">
+                    <button class="btn btn--primary" id="exportGallery">📥 Export Gallery</button>
+                    <button class="btn btn--outline" id="clearFavorites">🗑 Clear All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Messages -->
+    <div class="toast hidden" id="toast">
+        <div class="toast-content"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
