@@ -927,10 +927,10 @@ class QuoteApp {
     
     if (isFavorited) {
       heartBtn.classList.add('active');
-      heartIcon.textContent = '♥';
+      heartIcon.innerHTML = '<svg class="quote-heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 10.1-8.8 10.1S3.2 13.8 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z"/></svg>';
     } else {
       heartBtn.classList.remove('active');
-      heartIcon.textContent = '♡';
+      heartIcon.innerHTML = '<svg class="quote-heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.1-8.8 10.1-8.8 10.1S3.2 13.8 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z"/></svg>';
     }
 
     // Remove animation class after animation completes
@@ -1209,7 +1209,9 @@ class QuoteApp {
   applyTheme() {
     document.documentElement.setAttribute('data-color-scheme', this.currentTheme);
     const themeIcon = document.querySelector('.theme-icon');
-    themeIcon.textContent = this.currentTheme === 'light' ? '🌙' : '☀';
+    themeIcon.innerHTML = this.currentTheme === 'light'
+      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.1A8.5 8.5 0 0 1 8.9 3.5 8.5 8.5 0 1 0 20.5 15.1Z"/></svg>'
+      : '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
   }
 
   togglePanel() {
