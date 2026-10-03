@@ -784,6 +784,7 @@ class QuoteApp {
     this.renderBackgroundOptions();
     this.populateArchiveFilters();
     this.applyTheme();
+    this.syncVisualControls();
     this.displayCurrentQuote();
     this.updateFavoritesCount();
     this.applyCustomization();
@@ -816,6 +817,17 @@ class QuoteApp {
     document.getElementById('fontWeight').addEventListener('change', (e) => this.updateCustomization('fontWeight', e.target.value));
     document.getElementById('textAlign').addEventListener('change', (e) => this.updateCustomization('textAlign', e.target.value));
     document.getElementById('quotePosition').addEventListener('change', (e) => this.updateCustomization('position', e.target.value));
+    document.getElementById('textTransform').addEventListener('change', (e) => this.updateCustomization('textTransform', e.target.value));
+    document.getElementById('letterSpacing').addEventListener('input', (e) => {
+      this.updateCustomization('letterSpacing', e.target.value);
+      document.getElementById('letterSpacingValue').textContent = Number(e.target.value).toFixed(3) + 'em';
+    });
+    document.getElementById('lineHeight').addEventListener('input', (e) => {
+      this.updateCustomization('lineHeight', e.target.value);
+      document.getElementById('lineHeightValue').textContent = Number(e.target.value).toFixed(2);
+    });
+    document.getElementById('randomTheme').addEventListener('click', () => this.randomTheme());
+    document.getElementById('autoContrast').addEventListener('click', () => this.toggleAutoContrast());
 
     // Color picker
     document.querySelectorAll('.color-swatch').forEach(swatch => {
@@ -1023,35 +1035,79 @@ class QuoteApp {
     const quoteSchool = document.getElementById('quoteSchool');
     const quoteBackground = document.getElementById('quoteBackground');
     const quoteContent = document.getElementById('quoteContent');
+    const theme = backgroundOptions.find(bg => bg.id === this.customization.background) || backgroundOptions[0];
 
-    // Apply typography
-    if (this.customization.fontFamily) {
-      quoteText.style.fontFamily = this.customization.fontFamily;
-    }
-    if (this.customization.fontSize) {
-      quoteText.style.fontSize = this.customization.fontSize + 'px';
-    }
-    if (this.customization.fontWeight) {
-      quoteText.style.fontWeight = this.customization.fontWeight;
-    }
-    if (this.customization.textAlign) {
-      quoteContent.style.textAlign = this.customization.textAlign;
-    }
-    if (this.customization.textColor) {
-      quoteText.style.color = this.customization.textColor;
-      quoteAuthor.style.color = this.customization.textColor;
-      quoteSchool.style.color = this.customization.textColor;
-    }
+    if (this.customization.fontFamily) quoteText.style.fontFamily = this.customization.fontFamily;
+    if (this.customization.fontSize) quoteText.style.fontSize = this.customization.fontSize + 'px';
+    if (this.customization.fontWeight) quoteText.style.fontWeight = this.customization.fontWeight;
+    if (this.customization.textAlign) quoteContent.style.textAlign = this.customization.textAlign;
+    if (this.customization.letterSpacing !== undefined) quoteText.style.letterSpacing = this.customization.letterSpacing + 'em';
+    if (this.customization.lineHeight !== undefined) quoteText.style.lineHeight = this.customization.lineHeight;
+    if (this.customization.textTransform) quoteText.style.textTransform = this.customization.textTransform;
 
-    // Apply background
-    if (this.customization.background) {
-      quoteBackground.className = `quote-background ${this.customization.background}`;
-    }
+    const textColor = this.customization.autoContrast
+      ? this.getContrastColor(theme.colors)
+      : (this.customization.textColor || '#ffffff');
+    quoteText.style.color = textColor;
+    quoteAuthor.style.color = textColor;
+    quoteSchool.style.color = textColor;
 
-    // Apply position
-    if (this.customization.position) {
-      quoteBackground.style.alignItems = this.customization.position;
-    }
+    quoteBackground.className = `quote-background ${theme.id}`;
+    quoteBackground.style.backgroundImage = `linear-gradient(135deg, ${theme.colors.join(', ')})`;
+    quoteBackground.style.backgroundColor = theme.colors[0];
+    quoteBackground.style.setProperty('--theme-a', theme.colors[0]);
+    quoteBackground.style.setProperty('--theme-b', theme.colors[theme.colors.length - 1]);
+    quoteBackground.style.alignItems = this.customization.position || 'center';
+
+    this.updateThemeReadout(theme);
+    this.syncVisualControls();
+  }
+
+  getContrastColor(colors) {
+    const hex = colors[Math.floor(colors.length / 2)].replace('#', '');
+    const r = parseInt(hex.slice(0,2),16), g = parseInt(hex.slice(2,4),16), b = parseInt(hex.slice(4,6),16);
+    const luminance = (0.2126*r + 0.7152*g + 0.0722*b) / 255;
+    return luminance > 0.63 ? '#171827' : '#ffffff';
+  }
+
+  updateThemeReadout(theme) {
+    const name = document.getElementById('activeThemeName');
+    const mood = document.getElementById('activeThemeMood');
+    const dot = document.getElementById('activeThemeDot');
+    if (name) name.textContent = theme.name;
+    if (mood) mood.textContent = `${theme.colors.length}-tone ${theme.type || 'gradient'} atmosphere`;
+    if (dot) dot.style.background = `linear-gradient(135deg, ${theme.colors.join(',')})`;
+  }
+
+  syncVisualControls() {
+    const c = this.customization;
+    const letter = document.getElementById('letterSpacing');
+    const line = document.getElementById('lineHeight');
+    const transform = document.getElementById('textTransform');
+    const letterValue = document.getElementById('letterSpacingValue');
+    const lineValue = document.getElementById('lineHeightValue');
+    if (letter) letter.value = c.letterSpacing ?? 0;
+    if (line) line.value = c.lineHeight ?? 1.5;
+    if (transform) transform.value = c.textTransform || 'none';
+    if (letterValue) letterValue.textContent = Number(c.letterSpacing ?? 0).toFixed(3) + 'em';
+    if (lineValue) lineValue.textContent = Number(c.lineHeight ?? 1.5).toFixed(2);
+    document.querySelectorAll('.background-option').forEach(opt => opt.classList.toggle('active', opt.dataset.background === c.background));
+  }
+
+  randomTheme() {
+    const current = this.customization.background;
+    const pool = backgroundOptions.filter(bg => bg.id !== current);
+    const next = pool[Math.floor(Math.random() * pool.length)];
+    this.updateCustomization('background', next.id);
+    if (this.customization.autoContrast) this.customization.textColor = this.getContrastColor(next.colors);
+    this.showToast(`Theme: ${next.name}`);
+  }
+
+  toggleAutoContrast() {
+    this.customization.autoContrast = !this.customization.autoContrast;
+    this.saveCustomization();
+    this.applyCustomization();
+    this.showToast(this.customization.autoContrast ? 'Auto contrast enabled' : 'Manual text color enabled');
   }
 
   toggleTheme() {
@@ -1260,7 +1316,11 @@ class QuoteApp {
         textAlign: 'center',
         textColor: '#ffffff',
         background: 'aurora',
-        position: 'center'
+        position: 'center',
+        letterSpacing: 0,
+        lineHeight: 1.5,
+        textTransform: 'none',
+        autoContrast: true
       };
     } catch {
       return {
@@ -1269,8 +1329,12 @@ class QuoteApp {
         fontWeight: 400,
         textAlign: 'center',
         textColor: '#ffffff',
-        background: 'gradient1',
-        position: 'center'
+        background: 'aurora',
+        position: 'center',
+        letterSpacing: 0,
+        lineHeight: 1.5,
+        textTransform: 'none',
+        autoContrast: true
       };
     }
   }
