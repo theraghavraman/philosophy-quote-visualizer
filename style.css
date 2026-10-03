@@ -117,3 +117,306 @@
 .color-swatch{border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.16)}
 .color-swatch.active{outline-color:var(--accent)}
 @media(max-width:800px){.original-composer{grid-template-columns:1fr;gap:22px;padding:24px}.composer-actions{grid-column:auto;flex-wrap:wrap}.composer-actions #originalStatus{width:100%;margin-left:0}.nav-shell{padding:0 16px}}
+
+
+/* ─────────────────────────────────────────────────────────────
+   PHILOGRAPH ICON SYSTEM v2
+   Premium icon-only controls: layered, tactile, state-aware.
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  --icon-accent:#5b4bdb;
+  --icon-warm:#e95d45;
+  --icon-shadow:rgba(23,23,21,.12);
+}
+
+/* Top-right controls: turn the old circular buttons into a small
+   editorial control cluster with depth and clear state changes. */
+.nav-favorite,
+.nav-mode{
+  position:relative;
+  isolation:isolate;
+  width:46px;
+  height:46px;
+  min-width:46px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  overflow:visible;
+  border:1px solid rgba(23,23,21,.13);
+  border-radius:15px;
+  background:linear-gradient(145deg,#fffefa 0%,#f0eee7 100%);
+  color:#25231f;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.95) inset,
+    0 7px 18px rgba(23,23,21,.07),
+    0 1px 2px rgba(23,23,21,.05);
+  transition:
+    transform .24s cubic-bezier(.2,.8,.2,1),
+    box-shadow .24s ease,
+    border-color .24s ease,
+    background .24s ease,
+    color .24s ease;
+}
+.nav-favorite{
+  width:58px;
+  min-width:58px;
+  border-radius:15px;
+}
+.nav-favorite:before,
+.nav-mode:before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.8);
+  pointer-events:none;
+  z-index:-1;
+}
+.nav-favorite:after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  top:7px;
+  right:7px;
+  border-radius:50%;
+  background:var(--icon-warm);
+  box-shadow:0 0 0 3px rgba(233,93,69,.10),0 0 14px rgba(233,93,69,.35);
+  opacity:.85;
+  transform:scale(.72);
+  transition:transform .24s ease,opacity .24s ease;
+}
+.nav-favorite:hover,
+.nav-mode:hover{
+  transform:translateY(-2px);
+  color:var(--icon-accent);
+  border-color:rgba(91,75,219,.35);
+  background:linear-gradient(145deg,#ffffff 0%,#f1effd 100%);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 12px 25px rgba(91,75,219,.13),
+    0 2px 4px rgba(23,23,21,.06);
+}
+.nav-favorite:hover:after{transform:scale(1);opacity:1}
+.nav-favorite:active,
+.nav-mode:active{transform:translateY(0) scale(.96)}
+
+.nav-icon{
+  width:19px;
+  height:19px;
+  flex:none;
+  stroke-width:1.7;
+  transition:transform .25s ease,stroke-width .25s ease;
+}
+.nav-favorite:hover .nav-icon{transform:scale(1.08)}
+.nav-favorite b{
+  min-width:18px;
+  font:700 10px/1 var(--mono);
+  letter-spacing:-.02em;
+  color:currentColor;
+  text-align:center;
+}
+
+/* Theme control: a modern "mode dial" rather than a bare moon glyph. */
+.nav-mode{
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 28%,#ffffff 0 8%,transparent 26%),
+    linear-gradient(145deg,#f8f7f2 0%,#e8e4d8 100%);
+}
+.nav-mode:after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:1px solid rgba(91,75,219,.10);
+  opacity:0;
+  transform:scale(.82);
+  transition:opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+}
+.nav-mode:hover:after{opacity:1;transform:scale(1)}
+.theme-icon{
+  position:relative;
+  width:22px;
+  height:22px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+}
+.theme-icon:before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:50%;
+  background:conic-gradient(from 25deg,rgba(91,75,219,.12),rgba(233,93,69,.09),rgba(91,75,219,.12));
+  animation:philographIconSpin 8s linear infinite;
+}
+.theme-icon svg{
+  position:relative;
+  z-index:1;
+  width:17px;
+  height:17px;
+  filter:drop-shadow(0 1px 1px rgba(23,23,21,.12));
+  stroke-width:1.8;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.nav-mode:hover .theme-icon svg{transform:rotate(-18deg) scale(1.12)}
+@keyframes philographIconSpin{to{transform:rotate(360deg)}}
+
+/* Dark mode gets a distinct celestial treatment while keeping the same
+   component geometry, so the control never feels like an emoji swap. */
+[data-color-scheme="dark"] .nav-favorite,
+[data-color-scheme="dark"] .nav-mode{
+  border-color:rgba(255,255,255,.13);
+  background:linear-gradient(145deg,#26251f 0%,#171714 100%);
+  color:#f3f0e8;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.07) inset,
+    0 9px 24px rgba(0,0,0,.28);
+}
+[data-color-scheme="dark"] .nav-favorite:hover,
+[data-color-scheme="dark"] .nav-mode:hover{
+  border-color:rgba(215,255,79,.35);
+  background:linear-gradient(145deg,#2b2a23 0%,#1b1a17 100%);
+  color:#d7ff4f;
+  box-shadow:0 12px 28px rgba(0,0,0,.32),0 0 20px rgba(215,255,79,.08);
+}
+[data-color-scheme="dark"] .nav-mode:after{border-color:rgba(215,255,79,.14)}
+[data-color-scheme="dark"] .nav-favorite:after{background:#ff7660}
+
+/* Quote favorite: make it feel like an actual collectible/saved-object
+   control instead of a generic heart button. */
+.favorite-heart{
+  position:relative;
+  isolation:isolate;
+  width:58px;
+  height:58px;
+  border:1px solid rgba(255,255,255,.48);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.42),transparent 30%),
+    linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.07));
+  color:#fff;
+  display:grid;
+  place-items:center;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.15),
+    0 1px 0 rgba(255,255,255,.24) inset;
+  overflow:visible;
+  transition:
+    transform .25s cubic-bezier(.2,.8,.2,1),
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+.favorite-heart:before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.12);
+  opacity:0;
+  transform:scale(.88);
+  transition:opacity .25s ease,transform .25s ease;
+  pointer-events:none;
+}
+.favorite-heart:after{
+  content:"";
+  position:absolute;
+  width:6px;
+  height:6px;
+  top:8px;
+  right:8px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,.08),0 0 14px rgba(255,255,255,.35);
+  opacity:.75;
+  transition:transform .25s ease,background .25s ease;
+}
+.favorite-heart:hover{
+  transform:translateY(-3px) rotate(-1deg);
+  border-color:rgba(255,255,255,.8);
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.5),transparent 30%),
+    linear-gradient(145deg,rgba(91,75,219,.9),rgba(91,75,219,.62));
+  box-shadow:
+    0 15px 32px rgba(0,0,0,.20),
+    0 0 0 5px rgba(91,75,219,.12),
+    0 0 28px rgba(91,75,219,.18);
+}
+.favorite-heart:hover:before{opacity:1;transform:scale(1)}
+.favorite-heart:hover:after{transform:scale(1.2)}
+.favorite-heart.active{
+  border-color:rgba(255,255,255,.9);
+  background:
+    radial-gradient(circle at 30% 24%,rgba(255,255,255,.5),transparent 30%),
+    linear-gradient(145deg,#6d5de7 0%,#5142c8 100%);
+  box-shadow:
+    0 14px 32px rgba(91,75,219,.27),
+    0 0 0 5px rgba(91,75,219,.13),
+    0 0 30px rgba(91,75,219,.22);
+}
+.favorite-heart.active:after{
+  background:#ffd7d0;
+  box-shadow:0 0 0 4px rgba(233,93,69,.14),0 0 16px rgba(233,93,69,.55);
+}
+.favorite-heart:active{transform:scale(.94)}
+.heart-icon{
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+}
+.quote-heart-icon{
+  width:24px;
+  height:24px;
+  stroke-width:1.55;
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.12));
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),fill .25s ease,stroke-width .25s ease;
+}
+.favorite-heart:hover .quote-heart-icon{
+  transform:scale(1.12);
+  stroke-width:1.8;
+}
+.favorite-heart.active .quote-heart-icon{
+  fill:currentColor;
+  transform:scale(1.08);
+}
+
+/* Small label treatment: only appears on wider quote canvases, keeping the
+   icon itself clean while making the action discoverable. */
+@media(min-width:901px){
+  .favorite-heart[title]::after{
+    content:"";
+    top:auto;
+    right:auto;
+    width:auto;
+    height:auto;
+    position:absolute;
+    left:calc(100% + 10px);
+    padding:5px 8px;
+    border-radius:999px;
+    background:rgba(23,23,21,.78);
+    color:#fff;
+    font:600 7px/1 var(--mono);
+    letter-spacing:.08em;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    opacity:0;
+    transform:translateX(-4px);
+    white-space:nowrap;
+    pointer-events:none;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+  }
+  .favorite-heart[title]:hover::after{opacity:1;transform:translateX(0)}
+}
+@media(max-width:700px){
+  .nav-favorite,.nav-mode{width:42px;min-width:42px;height:42px;border-radius:13px}
+  .nav-favorite{width:50px;min-width:50px}
+  .nav-icon{width:17px;height:17px}
+  .nav-favorite b{font-size:9px;min-width:15px}
+  .favorite-heart{width:52px;height:52px;border-radius:16px}
+}
