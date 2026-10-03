@@ -15,7 +15,10 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1 class="logo">Philosophy Quote Visualizer</h1>
+                <div class="brand-lockup">
+  <span class="brand-orbit">◌</span>
+  <div><h1 class="logo">Philosophy Quote Visualizer</h1><span class="brand-subtitle">A living atlas of ideas</span></div>
+</div>
                 <div class="header-controls">
                     <button class="btn btn--secondary btn--sm" id="favoritesBtn">
                         <span class="icon">♥</span>
@@ -31,7 +34,34 @@
 
     <!-- Main Application -->
     <main class="main">
+        <div class="aurora-field" aria-hidden="true"><span></span><span></span><span></span></div>
         <div class="container">
+            <section class="intro-hero">
+                <div class="hero-kicker">THE PHILOSOPHICAL QUOTE ARCHIVE</div>
+                <h2>Words to <em>think</em> with.</h2>
+                <p>Move through ancient wisdom, modern philosophy and 10,000 original aphorisms—then turn any thought into a visual artifact.</p>
+                <div class="archive-stats">
+                    <div><strong id="quoteTotal">10,025</strong><span>quotes</span></div>
+                    <div><strong>20</strong><span>traditions</span></div>
+                    <div><strong>∞</strong><span>ways to reflect</span></div>
+                </div>
+            </section>
+
+            <section class="archive-explorer" aria-label="Explore quotes">
+                <div class="explorer-heading">
+                    <span>01 / EXPLORE THE ARCHIVE</span>
+                    <span id="archiveStatus">10,025 quotes in the archive</span>
+                </div>
+                <div class="explorer-controls">
+                    <label class="search-wrap">
+                        <span>⌕</span>
+                        <input id="quoteSearch" type="search" placeholder="Search a thought, philosopher, tradition or theme…">
+                    </label>
+                    <select id="categoryFilter" class="archive-select" aria-label="Filter quotes">
+                        <option value="">All themes</option>
+                    </select>
+                </div>
+            </section>
             <div class="app-layout">
                 <!-- Quote Display Section -->
                 <section class="quote-section">
@@ -182,6 +212,6 @@
         <div class="toast-content"></div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=10000-aurora"></script>
 </body>
 </html>
