@@ -474,15 +474,33 @@ class QuoteApp {
     this.displayCurrentQuote();
   }
 
+  getNavigationPool() {
+    const query = (document.getElementById('quoteSearch')?.value || '').trim().toLowerCase();
+    const category = document.getElementById('categoryFilter')?.value || '';
+    if (!query && !category) return philosophicalQuotes;
+    return philosophicalQuotes.filter(q => {
+      const haystack = [q.quote, q.author, q.school, q.category, q.tradition || ''].join(' ').toLowerCase();
+      return (!query || haystack.includes(query)) && (!category || q.category === category || q.school === category);
+    });
+  }
+
   showNextQuote() {
-    this.currentQuoteIndex = (this.currentQuoteIndex + 1) % philosophicalQuotes.length;
+    const pool = this.getNavigationPool();
+    if (!pool.length) return this.showToast('No quotes match that exploration.');
+    const currentId = philosophicalQuotes[this.currentQuoteIndex]?.id;
+    const currentPoolIndex = Math.max(0, pool.findIndex(q => q.id === currentId));
+    const next = pool[(currentPoolIndex + 1) % pool.length];
+    this.currentQuoteIndex = philosophicalQuotes.findIndex(q => q.id === next.id);
     this.displayCurrentQuote();
   }
 
   showPreviousQuote() {
-    this.currentQuoteIndex = this.currentQuoteIndex === 0 
-      ? philosophicalQuotes.length - 1 
-      : this.currentQuoteIndex - 1;
+    const pool = this.getNavigationPool();
+    if (!pool.length) return this.showToast('No quotes match that exploration.');
+    const currentId = philosophicalQuotes[this.currentQuoteIndex]?.id;
+    const currentPoolIndex = Math.max(0, pool.findIndex(q => q.id === currentId));
+    const previous = pool[(currentPoolIndex - 1 + pool.length) % pool.length];
+    this.currentQuoteIndex = philosophicalQuotes.findIndex(q => q.id === previous.id);
     this.displayCurrentQuote();
   }
 
