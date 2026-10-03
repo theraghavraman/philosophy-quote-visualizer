@@ -869,18 +869,23 @@ class QuoteApp {
   renderBackgroundOptions() {
     const grid = document.getElementById('backgroundGrid');
     grid.innerHTML = backgroundOptions.map((bg, index) => 
-      `<div class="background-option ${bg.id} ${index === 0 ? 'active' : ''}" 
+      `<button type="button" class="background-option ${bg.id} ${index === 0 ? 'active' : ''}" 
             data-background="${bg.id}" 
             title="${bg.name}"
-            tabindex="0"></div>`
+            aria-label="Use ${bg.name}"
+            tabindex="0"
+            style="background:linear-gradient(135deg,${bg.colors.join(',')})">
+          <span class="theme-swatch-name">${bg.name}</span>
+       </button>`
     ).join('');
 
     // Add click handlers for background options
     document.querySelectorAll('.background-option').forEach(option => {
       option.addEventListener('click', (e) => {
+        const selected = e.currentTarget;
         document.querySelectorAll('.background-option').forEach(opt => opt.classList.remove('active'));
-        e.target.classList.add('active');
-        this.updateCustomization('background', e.target.dataset.background);
+        selected.classList.add('active');
+        this.updateCustomization('background', selected.dataset.background);
       });
     });
   }
@@ -1055,8 +1060,8 @@ class QuoteApp {
 
     quoteBackground.className = `quote-background ${theme.id} texture-${this.customization.texture || 'topo'}`;
     quoteBackground.dataset.themeFamily = this.getThemeFamily(theme);
-    quoteBackground.style.backgroundImage = `linear-gradient(135deg, ${theme.colors.join(', ')})`;
-    quoteBackground.style.backgroundColor = theme.colors[0];
+    quoteBackground.style.backgroundImage = '';
+    quoteBackground.style.backgroundColor = '';
     quoteBackground.style.setProperty('--theme-a', theme.colors[0]);
     quoteBackground.style.setProperty('--theme-b', theme.colors[theme.colors.length - 1]);
     quoteBackground.style.alignItems = this.customization.position || 'center';
@@ -1287,6 +1292,8 @@ class QuoteApp {
 
   updateFavoritesCount() {
     document.getElementById('favoritesCount').textContent = this.favorites.length;
+    const navCount = document.getElementById('navQuoteCount');
+    if (navCount) navCount.textContent = philosophicalQuotes.length.toLocaleString();
   }
 
   // Local Storage Methods
