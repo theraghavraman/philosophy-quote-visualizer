@@ -1307,35 +1307,24 @@ class QuoteApp {
   }
 
   loadCustomization() {
+    const defaults = {
+      fontFamily: "'Playfair Display', serif",
+      fontSize: 32,
+      fontWeight: 400,
+      textAlign: 'center',
+      textColor: '#ffffff',
+      background: 'aurora',
+      position: 'center',
+      letterSpacing: 0,
+      lineHeight: 1.5,
+      textTransform: 'none',
+      autoContrast: true
+    };
     try {
-      const saved = localStorage.getItem('philosophy-customization');
-      return saved ? JSON.parse(saved) : {
-        fontFamily: "'Playfair Display', serif",
-        fontSize: 32,
-        fontWeight: 400,
-        textAlign: 'center',
-        textColor: '#ffffff',
-        background: 'aurora',
-        position: 'center',
-        letterSpacing: 0,
-        lineHeight: 1.5,
-        textTransform: 'none',
-        autoContrast: true
-      };
+      const saved = JSON.parse(localStorage.getItem('philosophy-customization') || 'null');
+      return { ...defaults, ...(saved || {}) };
     } catch {
-      return {
-        fontFamily: "'Playfair Display', serif",
-        fontSize: 32,
-        fontWeight: 400,
-        textAlign: 'center',
-        textColor: '#ffffff',
-        background: 'aurora',
-        position: 'center',
-        letterSpacing: 0,
-        lineHeight: 1.5,
-        textTransform: 'none',
-        autoContrast: true
-      };
+      return defaults;
     }
   }
 
