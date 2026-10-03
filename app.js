@@ -772,6 +772,8 @@ const backgroundOptions = [
 class QuoteApp {
   constructor() {
     this.currentQuoteIndex = 0;
+    this.originalQuote = null;
+    this.searchMatches = [];
     this.favorites = this.loadFavorites();
     this.currentTheme = this.loadTheme();
     this.customization = this.loadCustomization();
@@ -800,6 +802,23 @@ class QuoteApp {
     const quoteSearch = document.getElementById('quoteSearch');
     const categoryFilter = document.getElementById('categoryFilter');
     if (quoteSearch) quoteSearch.addEventListener('input', () => this.filterArchive());
+    const originalQuote = document.getElementById('originalQuote');
+    const originalAuthor = document.getElementById('originalAuthor');
+    const syncOriginal = () => this.syncOriginalQuote();
+    originalQuote.addEventListener('input', syncOriginal);
+    originalAuthor.addEventListener('input', syncOriginal);
+    document.getElementById('generateOriginal').addEventListener('click', () => this.generateOriginalQuote());
+    document.getElementById('resetOriginal').addEventListener('click', () => this.clearOriginalQuote());
+    document.getElementById('searchResults').addEventListener('click', event => {
+      const button = event.target.closest('[data-quote-id]');
+      if (!button) return;
+      const index = philosophicalQuotes.findIndex(quote => quote.id === Number(button.dataset.quoteId));
+      if (index < 0) return;
+      this.originalQuote = null;
+      this.currentQuoteIndex = index;
+      this.displayCurrentQuote();
+      document.getElementById('quote-stage').scrollIntoView({behavior:'smooth',block:'start'});
+    });
     if (categoryFilter) categoryFilter.addEventListener('change', () => this.filterArchive());
 
 
@@ -891,7 +910,7 @@ class QuoteApp {
   }
 
   displayCurrentQuote() {
-    const quote = philosophicalQuotes[this.currentQuoteIndex];
+    const quote = this.originalQuote || philosophicalQuotes[this.currentQuoteIndex];
     const quoteContent = document.getElementById('quoteContent');
     
     // Add changing animation
@@ -904,7 +923,7 @@ class QuoteApp {
     // Update favorite heart
     const heartBtn = document.getElementById('favoriteHeart');
     const heartIcon = heartBtn.querySelector('.heart-icon');
-    const isFavorited = this.favorites.some(fav => fav.id === quote.id);
+    const isFavorited = this.favorites.some(fav => fav.id === quote.id && fav.quote === quote.quote);
     
     if (isFavorited) {
       heartBtn.classList.add('active');
@@ -920,6 +939,34 @@ class QuoteApp {
     }, 300);
   }
 
+  syncOriginalQuote() {
+    const text = document.getElementById('originalQuote').value.trim();
+    const author = document.getElementById('originalAuthor').value.trim();
+    const status = document.getElementById('originalStatus');
+    if (!text) {
+      this.originalQuote = null;
+      status.textContent = 'READY TO COMPOSE';
+      this.displayCurrentQuote();
+      return;
+    }
+    this.originalQuote = {id:'original-' + text + author, quote:text, author:author || 'You', school:'Original Thought', category:'Original', generated:false};
+    status.textContent = '● SYNCED TO CANVAS';
+    this.displayCurrentQuote();
+  }
+
+  generateOriginalQuote() {
+    this.syncOriginalQuote();
+    if (!this.originalQuote) return this.showToast('Write your quote first.');
+    document.getElementById('quote-stage').scrollIntoView({behavior:'smooth',block:'start'});
+    this.showToast('Your original quote is ready to download.');
+  }
+
+  clearOriginalQuote() {
+    document.getElementById('originalQuote').value = '';
+    document.getElementById('originalAuthor').value = '';
+    this.syncOriginalQuote();
+  }
+
   filterArchive() {
     const query = (document.getElementById('quoteSearch')?.value || '').trim().toLowerCase();
     const category = document.getElementById('categoryFilter')?.value || '';
@@ -930,6 +977,33 @@ class QuoteApp {
     });
     if (status) status.textContent = matches.length.toLocaleString() + ' matching quotes';
     this.filteredQuoteIds = matches.map(q => q.id);
+    const results = document.getElementById('searchResults');
+    results.hidden = !query && !category;
+    results.replaceChildren();
+    if (!results.hidden) {
+      if (!matches.length) {
+        const empty = document.createElement('p');
+        empty.textContent = 'No matching quotes. Try another phrase or theme.';
+        results.appendChild(empty);
+      }
+      matches.slice(0, 12).forEach(quote => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'search-result';
+        button.dataset.quoteId = String(quote.id);
+        const title = document.createElement('strong');
+        title.textContent = quote.quote;
+        const meta = document.createElement('small');
+        meta.textContent = quote.author + ' / ' + quote.school;
+        button.append(title, meta);
+        results.appendChild(button);
+      });
+      if (matches.length > 12) {
+        const more = document.createElement('p');
+        more.textContent = 'Showing the first 12 matches. Refine your search or use Next on the canvas to browse all matches.';
+        results.appendChild(more);
+      }
+    }
   }
 
   populateArchiveFilters() {
@@ -954,6 +1028,7 @@ class QuoteApp {
       this.showToast('No quotes match that exploration.');
       return;
     }
+    this.originalQuote = null;
     const quote = pool[Math.floor(Math.random() * pool.length)];
     this.currentQuoteIndex = philosophicalQuotes.findIndex(q => q.id === quote.id);
     this.displayCurrentQuote();
@@ -970,6 +1045,7 @@ class QuoteApp {
   }
 
   showNextQuote() {
+    this.originalQuote = null;
     const pool = this.getNavigationPool();
     if (!pool.length) return this.showToast('No quotes match that exploration.');
     const currentId = philosophicalQuotes[this.currentQuoteIndex]?.id;
@@ -990,8 +1066,8 @@ class QuoteApp {
   }
 
   toggleFavorite() {
-    const currentQuote = philosophicalQuotes[this.currentQuoteIndex];
-    const existingIndex = this.favorites.findIndex(fav => fav.id === currentQuote.id);
+    const currentQuote = this.originalQuote || philosophicalQuotes[this.currentQuoteIndex];
+    const existingIndex = this.favorites.findIndex(fav => fav.id === currentQuote.id && fav.quote === currentQuote.quote);
 
     if (existingIndex >= 0) {
       this.favorites.splice(existingIndex, 1);
@@ -1157,6 +1233,7 @@ class QuoteApp {
     downloadBtn.disabled = true;
 
     try {
+      if (typeof html2canvas !== 'function') throw new Error('Image renderer is unavailable');
       const canvas = await html2canvas(quoteContainer, {
         scale: 2,
         backgroundColor: null,
