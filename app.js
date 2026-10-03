@@ -258,6 +258,12 @@ philosophicalQuotes.push(...expandedOriginalAphorisms);
 
 const backgroundOptions = [
   {
+    "id":"aurora",
+    "name":"Aurora Veil",
+    "type":"gradient",
+    "colors":["#b8efe5","#c9c2f5","#ffd8d2","#fff7cf"]
+  },
+  {
     "id": "gradient1",
     "name": "Cosmic Dreams",
     "type": "gradient",
