@@ -1257,14 +1257,14 @@ class QuoteApp {
   }
 
   shareOnTwitter() {
-    const currentQuote = philosophicalQuotes[this.currentQuoteIndex];
+    const currentQuote = this.originalQuote || philosophicalQuotes[this.currentQuoteIndex];
     const text = `"${currentQuote.quote}" — ${currentQuote.author}`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&hashtags=philosophy,wisdom,inspiration`;
     window.open(url, '_blank');
   }
 
   copyToClipboard() {
-    const currentQuote = philosophicalQuotes[this.currentQuoteIndex];
+    const currentQuote = this.originalQuote || philosophicalQuotes[this.currentQuoteIndex];
     const text = `"${currentQuote.quote}" — ${currentQuote.author}`;
     
     navigator.clipboard.writeText(text).then(() => {
