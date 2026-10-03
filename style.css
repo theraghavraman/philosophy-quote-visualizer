@@ -1656,3 +1656,50 @@ body:before{
 @media (max-width:720px){#backgroundGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.background-option{min-height:48px;border-radius:12px}}
 @media (max-width:480px){#backgroundGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (prefers-reduced-motion:reduce){.quote-background{animation:none}.background-option{transition:none}}
+
+
+/* ─────────────────────────────────────────────────────────────────────
+   VISUAL ENGINE + TYPOGRAPHY STUDIO
+   ───────────────────────────────────────────────────────────────────── */
+.theme-engine-section{padding-bottom:18px}
+.control-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.engine-badge{
+  display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;
+  background:linear-gradient(135deg,#7b2ff7,#00c9a7);color:white;
+  font:700 9px/1 Roboto,sans-serif;letter-spacing:.08em
+}
+.theme-engine-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.theme-engine-actions .btn{font-size:11px!important;padding:8px 10px!important}
+.active-theme-readout{
+  display:flex;align-items:center;gap:10px;padding:11px 12px;
+  border:1px solid rgba(80,80,120,.1);border-radius:14px;
+  background:rgba(255,255,255,.55)
+}
+.active-theme-dot{
+  width:30px;height:30px;border-radius:10px;flex:none;
+  box-shadow:0 5px 15px rgba(60,50,100,.14)
+}
+.active-theme-readout strong{display:block;font:600 12px/1.2 "Roboto",sans-serif;color:#393b50}
+.active-theme-readout small{display:block;margin-top:3px;font:400 9px/1.2 "Roboto",sans-serif;color:#9295a4}
+.range-control{
+  width:100%;height:5px;margin:5px 0 0;appearance:none;
+  border-radius:99px;background:linear-gradient(90deg,#7b2ff7,#00c9a7);
+  outline:none;cursor:pointer
+}
+.range-control::-webkit-slider-thumb{
+  appearance:none;width:16px;height:16px;border-radius:50%;
+  background:white;border:2px solid #7b2ff7;box-shadow:0 3px 10px rgba(60,40,120,.22)
+}
+.range-control::-moz-range-thumb{
+  width:16px;height:16px;border-radius:50%;
+  background:white;border:2px solid #7b2ff7;box-shadow:0 3px 10px rgba(60,40,120,.22)
+}
+.range-value{text-align:right;margin-top:4px;color:#818496;font:500 9px/1 Roboto,sans-serif}
+.typography-controls .form-group:has(.range-control){padding-bottom:2px}
+.quote-background{isolation:isolate}
+.quote-background .quote-content{filter:drop-shadow(0 8px 25px rgba(0,0,0,.08))}
+.quote-background[data-theme-family="dark"] .quote-content{filter:drop-shadow(0 8px 30px rgba(0,0,0,.25))}
+@media(max-width:520px){
+  .theme-engine-actions{grid-template-columns:1fr}
+  .active-theme-readout{padding:10px}
+}
