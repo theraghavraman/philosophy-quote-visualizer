@@ -1740,3 +1740,140 @@ body:before{
 }
 .quote-background.texture-clean:after{display:none}
 .quote-background.texture-clean:before{opacity:.35}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHILOGRAPH — IMMERSIVE NAVIGATION REDESIGN
+   ═══════════════════════════════════════════════════════════════════════ */
+body{padding-top:0}
+.top-nav{
+  position:sticky;top:14px;z-index:100;width:min(1380px,calc(100% - 28px));margin:14px auto 0;
+  border:1px solid rgba(255,255,255,.62);border-radius:24px;
+  background:rgba(255,255,255,.68);backdrop-filter:blur(26px) saturate(145%);
+  box-shadow:0 18px 55px rgba(50,45,85,.10),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.nav-shell{min-height:74px;padding:9px 12px 9px 18px;display:grid;grid-template-columns:1.15fr auto 1fr;align-items:center;gap:18px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#292b3f}
+.nav-mark{position:relative;width:38px;height:38px;border-radius:13px;display:block;background:linear-gradient(135deg,#7b2ff7,#00c9a7);box-shadow:0 8px 22px rgba(92,69,170,.20);overflow:hidden}
+.nav-mark i{position:absolute;border:1px solid rgba(255,255,255,.78);border-radius:50%;width:21px;height:10px;left:8px;top:13px;transform:rotate(25deg)}
+.nav-mark i:nth-child(2){transform:rotate(-25deg)}
+.nav-mark i:nth-child(3){width:6px;height:6px;background:white;border:0;left:16px;top:16px}
+.nav-brand-copy strong{display:block;font:800 15px/1 "Space Grotesk",sans-serif;letter-spacing:.09em}
+.nav-brand-copy strong span{color:#7b2ff7}
+.nav-brand-copy small{display:block;margin-top:5px;font:500 8px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#8a8d9d}
+.nav-links{display:flex;align-items:center;justify-content:center;gap:5px;padding:4px;border-radius:999px;background:rgba(238,239,245,.65);border:1px solid rgba(70,70,100,.07)}
+.nav-links a{padding:10px 14px;border-radius:999px;text-decoration:none;color:#73768a;font:600 10px/1 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:.22s ease}
+.nav-links a:hover{color:#272a3d;background:white;box-shadow:0 5px 16px rgba(60,55,90,.08)}
+.nav-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.nav-count{font:500 9px/1 "IBM Plex Mono",monospace;color:#8a8d9d;margin-right:4px}
+.nav-count b{color:#45485c}
+.nav-favorite,.nav-mode{width:39px;height:39px;border:1px solid rgba(65,70,100,.10);border-radius:13px;background:rgba(255,255,255,.7);color:#6d7082;cursor:pointer;transition:.2s ease}
+.nav-favorite span{color:#ff4f86;margin-right:3px}
+.nav-favorite:hover,.nav-mode:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(60,55,90,.11)}
+.nav-progress{height:2px;margin:0 20px;background:rgba(100,100,130,.08);overflow:hidden;border-radius:10px}
+.nav-progress span{display:block;width:38%;height:100%;background:linear-gradient(90deg,#7b2ff7,#00c9a7,#ff4ecd);animation:navProgress 7s ease-in-out infinite}
+@keyframes navProgress{0%{transform:translateX(-110%);width:20%}50%{width:42%}100%{transform:translateX(270%);width:25%}}
+/* Top hero is now a designed editorial masthead, not the old page heading */
+.intro-hero{min-height:390px!important;padding-top:82px!important;position:relative}
+.intro-hero:before{content:"PHILOGRAPH / 01";position:absolute;top:32px;left:5%;font:600 9px "IBM Plex Mono",monospace;letter-spacing:.14em;color:#9a9cab}
+.intro-hero:after{content:"";position:absolute;width:110px;height:110px;right:7%;top:52px;border-radius:50%;border:1px solid rgba(123,47,247,.15);box-shadow:inset 0 0 0 18px rgba(123,47,247,.025),inset 0 0 0 38px rgba(0,201,167,.025);animation:heroOrb 9s linear infinite}
+@keyframes heroOrb{to{transform:rotate(360deg)}}
+.intro-hero h2{font-family:"Cormorant Garamond","Playfair Display",serif!important;font-weight:500!important}
+.intro-hero h2 em{-webkit-text-stroke:0!important;background:linear-gradient(90deg,#7b2ff7,#00a99a,#ff4ecd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro-hero p{font-family:"DM Sans",sans-serif}
+.archive-explorer{scroll-margin-top:105px}
+#quote-stage,#visual-studio,#favorites{scroll-margin-top:105px}
+#visual-studio{border-top:2px solid rgba(123,47,247,.14)!important}
+#quote-stage{position:relative}
+#quote-stage:before{content:"02 / COMPOSE";position:absolute;top:-26px;left:0;font:600 9px "IBM Plex Mono",monospace;letter-spacing:.14em;color:#9295a4}
+/* Theme gallery: visible names + guaranteed swatch rendering */
+#backgroundGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important;max-height:480px!important}
+.background-option{
+  display:flex!important;align-items:flex-end!important;justify-content:flex-start!important;
+  width:100%;min-height:68px!important;padding:0!important;border:0!important;
+  position:relative!important;border-radius:14px!important;overflow:hidden!important;
+  background-size:180% 180%!important;background-position:35% 45%!important;
+  color:white!important;cursor:pointer;font:inherit;
+}
+.background-option:before{background:linear-gradient(180deg,transparent 20%,rgba(0,0,0,.48) 100%)!important;opacity:1!important;z-index:1}
+.background-option:after{z-index:1}
+.theme-swatch-name{
+  position:relative;z-index:3;width:100%;padding:8px 8px 7px;text-align:left;
+  color:white;font:600 9px/1.1 "DM Sans",sans-serif;letter-spacing:.015em;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.background-option:hover{transform:translateY(-3px) scale(1.015)!important}
+.background-option.active{outline:2px solid #7b2ff7!important;outline-offset:2px!important;box-shadow:0 0 0 4px rgba(123,47,247,.13),0 14px 28px rgba(70,40,120,.18)!important}
+.background-option.active .theme-swatch-name{background:linear-gradient(90deg,rgba(123,47,247,.4),transparent)}
+/* Let theme classes control the quote canvas. Never flatten them with inline styles. */
+.quote-background{background-image:none!important}
+.quote-background.aurora{background-image:
+ radial-gradient(circle at 15% 20%,rgba(131,233,218,.9),transparent 35%),
+ radial-gradient(circle at 85% 20%,rgba(180,159,238,.82),transparent 36%),
+ radial-gradient(circle at 50% 100%,rgba(255,185,185,.75),transparent 42%),
+ linear-gradient(135deg,#eafaf5,#f2effc 48%,#fff2ef)!important}
+.quote-background.prism{background-image:linear-gradient(135deg,#ff006e,#8338ec,#3a86ff,#00f5d4)!important}
+.quote-background.neon{background-image:linear-gradient(135deg,#00f5ff,#7cff00,#ff00e5)!important}
+.quote-background.cyberpunk{background-image:linear-gradient(135deg,#ff0080,#7928ca,#00f0ff)!important}
+.quote-background.sunset{background-image:linear-gradient(135deg,#ff4d00,#ff9f1c,#ffe66d)!important}
+.quote-background.ocean{background-image:linear-gradient(135deg,#003b73,#0074b7,#60a3d9,#75e6da)!important}
+.quote-background.tropical{background-image:linear-gradient(135deg,#00b894,#00cec9,#ffeaa7,#fd79a8)!important}
+.quote-background.candy{background-image:linear-gradient(135deg,#ff6bcb,#c77dff,#72ddf7,#b9fbc0)!important}
+.quote-background.lavender{background-image:linear-gradient(135deg,#7f00ff,#e100ff,#00c6ff)!important}
+.quote-background.peach{background-image:linear-gradient(135deg,#ff512f,#f09819,#ffdde1)!important}
+.quote-background.mint{background-image:linear-gradient(135deg,#00f2fe,#4facfe,#43e97b)!important}
+.quote-background.berry{background-image:linear-gradient(135deg,#6a11cb,#2575fc,#ff2d95)!important}
+.quote-background.ruby{background-image:linear-gradient(135deg,#ff0844,#ffb199,#7f00ff)!important}
+.quote-background.emerald{background-image:linear-gradient(135deg,#00b09b,#96c93d,#00f5a0)!important}
+.quote-background.sapphire{background-image:linear-gradient(135deg,#0575e6,#00f2fe,#4361ee)!important}
+.quote-background.amethyst{background-image:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)!important}
+.quote-background.coral{background-image:linear-gradient(135deg,#ff5858,#f09819,#00c9ff)!important}
+.quote-background.lagoon{background-image:linear-gradient(135deg,#00c6ff,#0072ff,#00f5a0)!important}
+.quote-background.flamingo{background-image:linear-gradient(135deg,#f953c6,#b91d73,#ff758c)!important}
+.quote-background.lemon{background-image:linear-gradient(135deg,#f9d423,#ff4e50,#7fff00)!important}
+.quote-background.lime{background-image:linear-gradient(135deg,#a8ff78,#78ffd6,#00c853)!important}
+.quote-background.indigo{background-image:linear-gradient(135deg,#4b0082,#4169e1,#00d4ff)!important}
+.quote-background.violet{background-image:linear-gradient(135deg,#8e2de2,#4a00e0,#ff00cc)!important}
+.quote-background.magenta{background-image:linear-gradient(135deg,#ff00cc,#333399,#00ffff)!important}
+.quote-background.turquoise{background-image:linear-gradient(135deg,#00f2fe,#4facfe,#00ff87)!important}
+.quote-background.gold{background-image:linear-gradient(135deg,#f7971e,#ffd200,#ff6f00)!important}
+.quote-background.bronze{background-image:linear-gradient(135deg,#b86e00,#f5af19,#ff7e5f)!important}
+.quote-background.rose{background-image:linear-gradient(135deg,#ff758c,#ff7eb3,#c471f5)!important}
+.quote-background.ice{background-image:linear-gradient(135deg,#e0f7ff,#74ebd5,#acb6e5)!important}
+.quote-background.glacier{background-image:linear-gradient(135deg,#83a4d4,#b6fbff,#00c6ff)!important}
+.quote-background.storm{background-image:linear-gradient(135deg,#232526,#414345,#7f5af0,#00d4ff)!important}
+.quote-background.midnight{background-image:linear-gradient(135deg,#020024,#090979,#00d4ff)!important}
+.quote-background.obsidian{background-image:linear-gradient(135deg,#090909,#2b1055,#ff0080)!important}
+.quote-background.galaxy{background-image:linear-gradient(135deg,#0f0c29,#302b63,#24243e,#ff00cc)!important}
+.quote-background.nebula{background-image:linear-gradient(135deg,#20002c,#cbb4d4,#ff4ecd)!important}
+.quote-background.plasma{background-image:linear-gradient(135deg,#ff00cc,#3333ff,#00ffff)!important}
+.quote-background.matrix{background-image:linear-gradient(135deg,#001f0f,#00ff41,#39ff14)!important}
+.quote-background.synthwave{background-image:linear-gradient(135deg,#2b1055,#7597de,#ff2d95,#00f0ff)!important}
+.quote-background.vapor{background-image:linear-gradient(135deg,#ff71ce,#01cdfe,#05ffa1,#b967ff)!important}
+.quote-background.hologram{background-image:linear-gradient(135deg,#00f5ff,#ff00ff,#fff000,#00ff88)!important}
+.quote-background.chrome{background-image:linear-gradient(135deg,#d7d2cc,#304352,#00e5ff)!important}
+.quote-background.fire{background-image:linear-gradient(135deg,#ff0000,#ff7a00,#ffd000)!important}
+.quote-background.ember{background-image:linear-gradient(135deg,#4b0000,#ff3d00,#ffb300)!important}
+.quote-background.volcano{background-image:linear-gradient(135deg,#200000,#8f0000,#ff4d00,#ffd166)!important}
+.quote-background.jungle{background-image:linear-gradient(135deg,#004d40,#00c853,#b2ff59,#00e676)!important}
+.quote-background.moss{background-image:linear-gradient(135deg,#134e5e,#71b280,#d4fc79)!important}
+.quote-background.sakura{background-image:linear-gradient(135deg,#ff758c,#ff7eb3,#6a11cb)!important}
+.quote-background.lotus{background-image:linear-gradient(135deg,#fbc2eb,#a6c1ee,#00c9a7)!important}
+.quote-background.monsoon{background-image:linear-gradient(135deg,#283c86,#45a247,#00c6ff,#845ec2)!important}
+.quote-background.cosmic{background-image:linear-gradient(135deg,#05001a,#3b0f70,#ff2d95,#00e5ff)!important}
+/* Typography presets need their loaded font names to visibly change */
+.quote-text{font-variant-ligatures:common-ligatures;font-kerning:normal}
+@media(max-width:900px){
+  .nav-shell{grid-template-columns:1fr auto}
+  .nav-links{grid-column:1/-1;grid-row:2;display:none}
+  .top-nav:focus-within .nav-links{display:flex}
+  .nav-count{display:none}
+}
+@media(max-width:600px){
+  .top-nav{width:calc(100% - 16px);top:8px;margin-top:8px;border-radius:19px}
+  .nav-shell{min-height:62px;padding:8px 9px 8px 12px}
+  .nav-brand-copy small{display:none}
+  .nav-brand-copy strong{font-size:12px}
+  .nav-mark{width:34px;height:34px}
+  #backgroundGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
