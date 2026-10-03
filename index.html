@@ -11,25 +11,29 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <!-- Navigation Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="brand-lockup">
-  <span class="brand-orbit">◌</span>
-  <div><h1 class="logo">Philosophy Quote Visualizer</h1><span class="brand-subtitle">A living atlas of ideas</span></div>
-</div>
-                <div class="header-controls">
-                    <button class="btn btn--secondary btn--sm" id="favoritesBtn">
-                        <span class="icon">♥</span>
-                        Favorites (<span id="favoritesCount">0</span>)
-                    </button>
-                    <button class="btn btn--outline btn--sm" id="themeToggle">
-                        <span class="theme-icon">☀</span>
-                    </button>
-                </div>
+    <!-- Immersive Navigation -->
+    <header class="top-nav">
+        <div class="nav-shell">
+            <a class="nav-brand" href="#" aria-label="Philosophy Quote Visualizer home">
+                <span class="nav-mark"><i></i><i></i><i></i></span>
+                <span class="nav-brand-copy">
+                    <strong>PHILO<span>•</span>GRAPH</strong>
+                    <small>Quote Visualizer / Living Archive</small>
+                </span>
+            </a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#archive-explorer">Archive</a>
+                <a href="#visual-studio">Studio</a>
+                <a href="#quote-stage">Canvas</a>
+                <a href="#favorites">Collection</a>
+            </nav>
+            <div class="nav-actions">
+                <span class="nav-count"><b id="navQuoteCount">10,025</b> thoughts</span>
+                <button class="nav-favorite" id="favoritesBtn"><span>♥</span><b id="favoritesCount">0</b></button>
+                <button class="nav-mode" id="themeToggle" aria-label="Toggle interface theme"><span class="theme-icon">☾</span></button>
             </div>
         </div>
+        <div class="nav-progress"><span></span></div>
     </header>
 
     <!-- Main Application -->
@@ -47,7 +51,7 @@
                 </div>
             </section>
 
-            <section class="archive-explorer" aria-label="Explore quotes">
+            <section class="archive-explorer" id="archive-explorer" aria-label="Explore quotes">
                 <div class="explorer-heading">
                     <span>01 / EXPLORE THE ARCHIVE</span>
                     <span id="archiveStatus">10,025 quotes in the archive</span>
@@ -62,11 +66,11 @@
                     </select>
                 </div>
             </section>
-            <div class="app-layout">
+            <div class="app-layout" id="quote-stage">
                 <!-- Quote Display Section -->
                 <section class="quote-section">
                     <div class="quote-container" id="quoteContainer">
-                        <div class="quote-background" id="quoteBackground">
+                        <div class="quote-background aurora texture-topo" id="quoteBackground">
                             <div class="quote-content" id="quoteContent">
                                 <blockquote class="quote-text" id="quoteText">
                                     The unexamined life is not worth living.
@@ -89,7 +93,7 @@
                 </section>
 
                 <!-- Customization Panel -->
-                <aside class="customization-panel" id="customizationPanel">
+                <aside class="customization-panel" id="visual-studio">
                     <div class="panel-header">
                         <h3>Customize Your Quote</h3>
                         <button class="panel-toggle" id="panelToggle">⚙</button>
@@ -235,7 +239,7 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="action-buttons">
+            <div class="action-buttons" id="favorites">
                 <button class="btn btn--primary" id="downloadBtn">📥 Download Image</button>
                 <button class="btn btn--secondary" id="shareTwitter">🐦 Share on Twitter</button>
                 <button class="btn btn--secondary" id="copyText">📋 Copy Text</button>
