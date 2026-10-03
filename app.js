@@ -236,7 +236,7 @@ const aphorismForms = [
 const generatedAphorisms = [];
 let aphorismId = 26;
 for (const [voice, tradition] of aphorismTraditions) {
-  for (let formIndex = 0; formIndex < aphorismForms.length; formIndex++) {
+  for (let formIndex = 0; formIndex < 20; formIndex++) {
     for (let themeIndex = 0; themeIndex < 25; themeIndex++) {
       const theme = aphorismThemes[themeIndex];
       generatedAphorisms.push({
@@ -251,7 +251,7 @@ for (const [voice, tradition] of aphorismTraditions) {
     }
   }
 }
-// 20 traditions × 25 forms × 25 themes = exactly 12,500 candidates.
+// 20 traditions × 20 forms × 25 themes = exactly 10,000 candidates.
 // Keep the first 10,000 so the expansion stays exactly at the requested size.
 const expandedOriginalAphorisms = generatedAphorisms.slice(0, 10000);
 philosophicalQuotes.push(...expandedOriginalAphorisms);
