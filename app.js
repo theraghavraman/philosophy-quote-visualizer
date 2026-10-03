@@ -818,6 +818,7 @@ class QuoteApp {
     document.getElementById('textAlign').addEventListener('change', (e) => this.updateCustomization('textAlign', e.target.value));
     document.getElementById('quotePosition').addEventListener('change', (e) => this.updateCustomization('position', e.target.value));
     document.getElementById('textTransform').addEventListener('change', (e) => this.updateCustomization('textTransform', e.target.value));
+    document.getElementById('textureMode').addEventListener('change', (e) => this.updateCustomization('texture', e.target.value));
     document.getElementById('letterSpacing').addEventListener('input', (e) => {
       this.updateCustomization('letterSpacing', e.target.value);
       document.getElementById('letterSpacingValue').textContent = Number(e.target.value).toFixed(3) + 'em';
@@ -1052,7 +1053,8 @@ class QuoteApp {
     quoteAuthor.style.color = textColor;
     quoteSchool.style.color = textColor;
 
-    quoteBackground.className = `quote-background ${theme.id}`;
+    quoteBackground.className = `quote-background ${theme.id} texture-${this.customization.texture || 'topo'}`;
+    quoteBackground.dataset.themeFamily = this.getThemeFamily(theme);
     quoteBackground.style.backgroundImage = `linear-gradient(135deg, ${theme.colors.join(', ')})`;
     quoteBackground.style.backgroundColor = theme.colors[0];
     quoteBackground.style.setProperty('--theme-a', theme.colors[0]);
@@ -1061,6 +1063,11 @@ class QuoteApp {
 
     this.updateThemeReadout(theme);
     this.syncVisualControls();
+  }
+
+  getThemeFamily(theme) {
+    const dark = ['storm','midnight','obsidian','galaxy','nebula','matrix','synthwave','vapor','plasma','volcano','ember','cyberpunk'];
+    return dark.includes(theme.id) ? 'dark' : 'light';
   }
 
   getContrastColor(colors) {
@@ -1084,11 +1091,13 @@ class QuoteApp {
     const letter = document.getElementById('letterSpacing');
     const line = document.getElementById('lineHeight');
     const transform = document.getElementById('textTransform');
+    const texture = document.getElementById('textureMode');
     const letterValue = document.getElementById('letterSpacingValue');
     const lineValue = document.getElementById('lineHeightValue');
     if (letter) letter.value = c.letterSpacing ?? 0;
     if (line) line.value = c.lineHeight ?? 1.5;
     if (transform) transform.value = c.textTransform || 'none';
+    if (texture) texture.value = c.texture || 'topo';
     if (letterValue) letterValue.textContent = Number(c.letterSpacing ?? 0).toFixed(3) + 'em';
     if (lineValue) lineValue.textContent = Number(c.lineHeight ?? 1.5).toFixed(2);
     document.querySelectorAll('.background-option').forEach(opt => opt.classList.toggle('active', opt.dataset.background === c.background));
@@ -1318,6 +1327,7 @@ class QuoteApp {
       letterSpacing: 0,
       lineHeight: 1.5,
       textTransform: 'none',
+      texture: 'topo',
       autoContrast: true
     };
     try {
