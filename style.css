@@ -1587,3 +1587,71 @@ body:before{
 @media(prefers-reduced-motion:reduce){
   body:before,.aurora-field span,.brand-orbit,.quote-background.aurora:before{animation:none}
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   50-THEME VIBRANT BACKGROUND SYSTEM
+   ═══════════════════════════════════════════════════════════════════════ */
+#backgroundGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;max-height:430px;overflow:auto;padding:6px 4px 10px;scrollbar-width:thin}
+.background-option{position:relative;min-height:58px;border-radius:15px;border:1px solid rgba(255,255,255,.42);box-shadow:0 8px 20px rgba(20,20,50,.10),inset 0 1px 0 rgba(255,255,255,.45);cursor:pointer;overflow:hidden;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,border-color .22s ease;isolation:isolate}
+.background-option::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.34),transparent 45%,rgba(255,255,255,.18));opacity:.7;pointer-events:none}
+.background-option::after{content:"";position:absolute;width:36px;height:36px;right:-10px;top:-12px;border-radius:50%;background:rgba(255,255,255,.28);filter:blur(7px);pointer-events:none}
+.background-option:hover{transform:translateY(-4px) scale(1.035);box-shadow:0 14px 30px rgba(20,20,50,.18),0 0 0 1px rgba(255,255,255,.5) inset}
+.background-option.active{transform:translateY(-2px) scale(1.04);border:2px solid rgba(255,255,255,.95);box-shadow:0 0 0 3px rgba(124,58,237,.22),0 14px 32px rgba(70,30,130,.22)}
+.background-option.active::before{background:linear-gradient(135deg,rgba(255,255,255,.5),transparent 45%,rgba(255,255,255,.28))}
+.background-option.aurora{background:linear-gradient(135deg,#00f5d4,#7b2ff7,#ff4ecd,#ffd166)}
+.background-option.prism{background:linear-gradient(135deg,#ff006e,#8338ec,#3a86ff,#00f5d4)}
+.background-option.neon{background:linear-gradient(135deg,#00f5ff,#7cff00,#ff00e5)}
+.background-option.cyberpunk{background:linear-gradient(135deg,#ff0080,#7928ca,#00f0ff)}
+.background-option.sunset{background:linear-gradient(135deg,#ff4d00,#ff9f1c,#ffe66d)}
+.background-option.ocean{background:linear-gradient(135deg,#003b73,#0074b7,#60a3d9,#75e6da)}
+.background-option.tropical{background:linear-gradient(135deg,#00b894,#00cec9,#ffeaa7,#fd79a8)}
+.background-option.candy{background:linear-gradient(135deg,#ff6bcb,#c77dff,#72ddf7,#b9fbc0)}
+.background-option.lavender{background:linear-gradient(135deg,#7f00ff,#e100ff,#00c6ff)}
+.background-option.peach{background:linear-gradient(135deg,#ff512f,#f09819,#ffdde1)}
+.background-option.mint{background:linear-gradient(135deg,#00f2fe,#4facfe,#43e97b)}
+.background-option.berry{background:linear-gradient(135deg,#6a11cb,#2575fc,#ff2d95)}
+.background-option.ruby{background:linear-gradient(135deg,#ff0844,#ffb199,#7f00ff)}
+.background-option.emerald{background:linear-gradient(135deg,#00b09b,#96c93d,#00f5a0)}
+.background-option.sapphire{background:linear-gradient(135deg,#0575e6,#00f2fe,#4361ee)}
+.background-option.amethyst{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+.background-option.coral{background:linear-gradient(135deg,#ff5858,#f09819,#00c9ff)}
+.background-option.lagoon{background:linear-gradient(135deg,#00c6ff,#0072ff,#00f5a0)}
+.background-option.flamingo{background:linear-gradient(135deg,#f953c6,#b91d73,#ff758c)}
+.background-option.lemon{background:linear-gradient(135deg,#f9d423,#ff4e50,#7fff00)}
+.background-option.lime{background:linear-gradient(135deg,#a8ff78,#78ffd6,#00c853)}
+.background-option.indigo{background:linear-gradient(135deg,#4b0082,#4169e1,#00d4ff)}
+.background-option.violet{background:linear-gradient(135deg,#8e2de2,#4a00e0,#ff00cc)}
+.background-option.magenta{background:linear-gradient(135deg,#ff00cc,#333399,#00ffff)}
+.background-option.turquoise{background:linear-gradient(135deg,#00f2fe,#4facfe,#00ff87)}
+.background-option.gold{background:linear-gradient(135deg,#f7971e,#ffd200,#ff6f00)}
+.background-option.bronze{background:linear-gradient(135deg,#b86e00,#f5af19,#ff7e5f)}
+.background-option.rose{background:linear-gradient(135deg,#ff758c,#ff7eb3,#c471f5)}
+.background-option.ice{background:linear-gradient(135deg,#e0f7ff,#74ebd5,#acb6e5)}
+.background-option.glacier{background:linear-gradient(135deg,#83a4d4,#b6fbff,#00c6ff)}
+.background-option.storm{background:linear-gradient(135deg,#232526,#414345,#7f5af0,#00d4ff)}
+.background-option.midnight{background:linear-gradient(135deg,#020024,#090979,#00d4ff)}
+.background-option.obsidian{background:linear-gradient(135deg,#090909,#2b1055,#ff0080)}
+.background-option.galaxy{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e,#ff00cc)}
+.background-option.nebula{background:linear-gradient(135deg,#20002c,#cbb4d4,#ff4ecd)}
+.background-option.plasma{background:linear-gradient(135deg,#ff00cc,#3333ff,#00ffff)}
+.background-option.matrix{background:linear-gradient(135deg,#001f0f,#00ff41,#39ff14)}
+.background-option.synthwave{background:linear-gradient(135deg,#2b1055,#7597de,#ff2d95,#00f0ff)}
+.background-option.vapor{background:linear-gradient(135deg,#ff71ce,#01cdfe,#05ffa1,#b967ff)}
+.background-option.hologram{background:linear-gradient(135deg,#00f5ff,#ff00ff,#fff000,#00ff88)}
+.background-option.chrome{background:linear-gradient(135deg,#d7d2cc,#304352,#00e5ff)}
+.background-option.fire{background:linear-gradient(135deg,#ff0000,#ff7a00,#ffd000)}
+.background-option.ember{background:linear-gradient(135deg,#4b0000,#ff3d00,#ffb300)}
+.background-option.volcano{background:linear-gradient(135deg,#200000,#8f0000,#ff4d00,#ffd166)}
+.background-option.jungle{background:linear-gradient(135deg,#004d40,#00c853,#b2ff59,#00e676)}
+.background-option.moss{background:linear-gradient(135deg,#134e5e,#71b280,#d4fc79)}
+.background-option.sakura{background:linear-gradient(135deg,#ff758c,#ff7eb3,#6a11cb)}
+.background-option.lotus{background:linear-gradient(135deg,#fbc2eb,#a6c1ee,#00c9a7)}
+.background-option.monsoon{background:linear-gradient(135deg,#283c86,#45a247,#00c6ff,#845ec2)}
+.quote-background{background-size:180% 180%;animation:themeDrift 12s ease-in-out infinite alternate}
+.quote-background::before{content:"";position:absolute;inset:-18%;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.34),transparent 28%),radial-gradient(circle at 82% 78%,rgba(255,255,255,.2),transparent 25%);mix-blend-mode:screen;pointer-events:none}
+.quote-background::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:24px 24px;opacity:.14;pointer-events:none}
+@keyframes themeDrift{0%{background-position:0% 35%}100%{background-position:100% 65%}}
+@media (max-width:720px){#backgroundGrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.background-option{min-height:48px;border-radius:12px}}
+@media (max-width:480px){#backgroundGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){.quote-background{animation:none}.background-option{transition:none}}
