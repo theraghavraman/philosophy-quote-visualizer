@@ -759,6 +759,12 @@ const backgroundOptions = [
       "#00c6ff",
       "#845ec2"
     ]
+  },
+  {
+    "id": "cosmic",
+    "name": "Cosmic Fire",
+    "type": "gradient",
+    "colors": ["#05001a", "#3b0f70", "#ff2d95", "#00e5ff"]
   }
 ];
 
