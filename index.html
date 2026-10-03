@@ -97,6 +97,21 @@
 
                     <div class="panel-content" id="panelContent">
                         <!-- Background Section -->
+                        <div class="control-section theme-engine-section">
+                            <div class="control-section-title">
+                                <h4>Visual Engine</h4>
+                                <span class="engine-badge">50 THEMES</span>
+                            </div>
+                            <div class="theme-engine-actions">
+                                <button class="btn btn--secondary btn--sm" id="randomTheme">✦ Surprise Theme</button>
+                                <button class="btn btn--outline btn--sm" id="autoContrast">◐ Auto Contrast</button>
+                            </div>
+                            <div class="active-theme-readout">
+                                <span class="active-theme-dot" id="activeThemeDot"></span>
+                                <div><strong id="activeThemeName">Aurora Veil</strong><small id="activeThemeMood">Vibrant atmosphere</small></div>
+                            </div>
+                        </div>
+
                         <div class="control-section">
                             <h4>Background</h4>
                             <div class="background-grid" id="backgroundGrid">
@@ -145,6 +160,27 @@
                                         <option value="left">Left</option>
                                         <option value="center" selected>Center</option>
                                         <option value="right">Right</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Letter Spacing</label>
+                                    <input class="range-control" id="letterSpacing" type="range" min="-0.04" max="0.12" step="0.005" value="0">
+                                    <div class="range-value" id="letterSpacingValue">0em</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Line Height</label>
+                                    <input class="range-control" id="lineHeight" type="range" min="1" max="2" step="0.05" value="1.5">
+                                    <div class="range-value" id="lineHeightValue">1.5</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Text Style</label>
+                                    <select class="form-control" id="textTransform">
+                                        <option value="none">Natural</option>
+                                        <option value="uppercase">Uppercase</option>
+                                        <option value="lowercase">Lowercase</option>
                                     </select>
                                 </div>
 
@@ -212,6 +248,6 @@
         <div class="toast-content"></div>
     </div>
 
-    <script src="app.js?v=10000-aurora"></script>
+    <script src="app.js?v=10000-visual-engine"></script>
 </body>
 </html>
