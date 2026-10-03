@@ -1648,6 +1648,7 @@ body:before{
 .background-option.sakura{background:linear-gradient(135deg,#ff758c,#ff7eb3,#6a11cb)}
 .background-option.lotus{background:linear-gradient(135deg,#fbc2eb,#a6c1ee,#00c9a7)}
 .background-option.monsoon{background:linear-gradient(135deg,#283c86,#45a247,#00c6ff,#845ec2)}
+.background-option.cosmic{background:linear-gradient(135deg,#05001a,#3b0f70,#ff2d95,#00e5ff)}
 .quote-background{background-size:180% 180%;animation:themeDrift 12s ease-in-out infinite alternate}
 .quote-background::before{content:"";position:absolute;inset:-18%;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.34),transparent 28%),radial-gradient(circle at 82% 78%,rgba(255,255,255,.2),transparent 25%);mix-blend-mode:screen;pointer-events:none}
 .quote-background::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:24px 24px;opacity:.14;pointer-events:none}
