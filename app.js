@@ -258,46 +258,507 @@ philosophicalQuotes.push(...expandedOriginalAphorisms);
 
 const backgroundOptions = [
   {
-    "id":"aurora",
-    "name":"Aurora Veil",
-    "type":"gradient",
-    "colors":["#b8efe5","#c9c2f5","#ffd8d2","#fff7cf"]
+    "id": "aurora",
+    "name": "Aurora Veil",
+    "type": "gradient",
+    "colors": [
+      "#00f5d4",
+      "#7b2ff7",
+      "#ff4ecd",
+      "#ffd166"
+    ]
   },
   {
-    "id": "gradient1",
-    "name": "Cosmic Dreams",
+    "id": "prism",
+    "name": "Prism Bloom",
     "type": "gradient",
-    "colors": ["#667eea", "#764ba2"]
+    "colors": [
+      "#ff006e",
+      "#8338ec",
+      "#3a86ff",
+      "#00f5d4"
+    ]
   },
   {
-    "id": "gradient2",
-    "name": "Ocean Sunset",
+    "id": "neon",
+    "name": "Neon Pulse",
     "type": "gradient",
-    "colors": ["#ff9a9e", "#fecfef", "#fecfef"]
+    "colors": [
+      "#00f5ff",
+      "#7cff00",
+      "#ff00e5"
+    ]
   },
   {
-    "id": "gradient3",
-    "name": "Forest Mist",
+    "id": "cyberpunk",
+    "name": "Cyberpunk City",
     "type": "gradient",
-    "colors": ["#a8edea", "#fed6e3"]
+    "colors": [
+      "#ff0080",
+      "#7928ca",
+      "#00f0ff"
+    ]
   },
   {
-    "id": "gradient4",
-    "name": "Aurora",
+    "id": "sunset",
+    "name": "Solar Flare",
     "type": "gradient",
-    "colors": ["#d299c2", "#fef9d7"]
+    "colors": [
+      "#ff4d00",
+      "#ff9f1c",
+      "#ffe66d"
+    ]
   },
   {
-    "id": "gradient5",
-    "name": "Desert Sky",
+    "id": "ocean",
+    "name": "Deep Ocean",
     "type": "gradient",
-    "colors": ["#ffecd2", "#fcb69f"]
+    "colors": [
+      "#003b73",
+      "#0074b7",
+      "#60a3d9",
+      "#75e6da"
+    ]
   },
   {
-    "id": "gradient6",
-    "name": "Midnight",
+    "id": "tropical",
+    "name": "Tropical Pop",
     "type": "gradient",
-    "colors": ["#2c3e50", "#3498db"]
+    "colors": [
+      "#00b894",
+      "#00cec9",
+      "#ffeaa7",
+      "#fd79a8"
+    ]
+  },
+  {
+    "id": "candy",
+    "name": "Candy Galaxy",
+    "type": "gradient",
+    "colors": [
+      "#ff6bcb",
+      "#c77dff",
+      "#72ddf7",
+      "#b9fbc0"
+    ]
+  },
+  {
+    "id": "lavender",
+    "name": "Electric Lavender",
+    "type": "gradient",
+    "colors": [
+      "#7f00ff",
+      "#e100ff",
+      "#00c6ff"
+    ]
+  },
+  {
+    "id": "peach",
+    "name": "Peach Voltage",
+    "type": "gradient",
+    "colors": [
+      "#ff512f",
+      "#f09819",
+      "#ffdde1"
+    ]
+  },
+  {
+    "id": "mint",
+    "name": "Mint Mirage",
+    "type": "gradient",
+    "colors": [
+      "#00f2fe",
+      "#4facfe",
+      "#43e97b"
+    ]
+  },
+  {
+    "id": "berry",
+    "name": "Berry Night",
+    "type": "gradient",
+    "colors": [
+      "#6a11cb",
+      "#2575fc",
+      "#ff2d95"
+    ]
+  },
+  {
+    "id": "ruby",
+    "name": "Ruby Glass",
+    "type": "gradient",
+    "colors": [
+      "#ff0844",
+      "#ffb199",
+      "#7f00ff"
+    ]
+  },
+  {
+    "id": "emerald",
+    "name": "Emerald Flame",
+    "type": "gradient",
+    "colors": [
+      "#00b09b",
+      "#96c93d",
+      "#00f5a0"
+    ]
+  },
+  {
+    "id": "sapphire",
+    "name": "Sapphire Rush",
+    "type": "gradient",
+    "colors": [
+      "#0575e6",
+      "#00f2fe",
+      "#4361ee"
+    ]
+  },
+  {
+    "id": "amethyst",
+    "name": "Amethyst Glow",
+    "type": "gradient",
+    "colors": [
+      "#833ab4",
+      "#fd1d1d",
+      "#fcb045"
+    ]
+  },
+  {
+    "id": "coral",
+    "name": "Coral Reef",
+    "type": "gradient",
+    "colors": [
+      "#ff5858",
+      "#f09819",
+      "#00c9ff"
+    ]
+  },
+  {
+    "id": "lagoon",
+    "name": "Lagoon Dream",
+    "type": "gradient",
+    "colors": [
+      "#00c6ff",
+      "#0072ff",
+      "#00f5a0"
+    ]
+  },
+  {
+    "id": "flamingo",
+    "name": "Flamingo",
+    "type": "gradient",
+    "colors": [
+      "#f953c6",
+      "#b91d73",
+      "#ff758c"
+    ]
+  },
+  {
+    "id": "lemon",
+    "name": "Electric Lemon",
+    "type": "gradient",
+    "colors": [
+      "#f9d423",
+      "#ff4e50",
+      "#7fff00"
+    ]
+  },
+  {
+    "id": "lime",
+    "name": "Lime Light",
+    "type": "gradient",
+    "colors": [
+      "#a8ff78",
+      "#78ffd6",
+      "#00c853"
+    ]
+  },
+  {
+    "id": "indigo",
+    "name": "Indigo Haze",
+    "type": "gradient",
+    "colors": [
+      "#4b0082",
+      "#4169e1",
+      "#00d4ff"
+    ]
+  },
+  {
+    "id": "violet",
+    "name": "Violet Storm",
+    "type": "gradient",
+    "colors": [
+      "#8e2de2",
+      "#4a00e0",
+      "#ff00cc"
+    ]
+  },
+  {
+    "id": "magenta",
+    "name": "Magenta Matrix",
+    "type": "gradient",
+    "colors": [
+      "#ff00cc",
+      "#333399",
+      "#00ffff"
+    ]
+  },
+  {
+    "id": "turquoise",
+    "name": "Turquoise Fire",
+    "type": "gradient",
+    "colors": [
+      "#00f2fe",
+      "#4facfe",
+      "#00ff87"
+    ]
+  },
+  {
+    "id": "gold",
+    "name": "Golden Hour",
+    "type": "gradient",
+    "colors": [
+      "#f7971e",
+      "#ffd200",
+      "#ff6f00"
+    ]
+  },
+  {
+    "id": "bronze",
+    "name": "Molten Bronze",
+    "type": "gradient",
+    "colors": [
+      "#b86e00",
+      "#f5af19",
+      "#ff7e5f"
+    ]
+  },
+  {
+    "id": "rose",
+    "name": "Rose Quartz",
+    "type": "gradient",
+    "colors": [
+      "#ff758c",
+      "#ff7eb3",
+      "#c471f5"
+    ]
+  },
+  {
+    "id": "ice",
+    "name": "Arctic Ice",
+    "type": "gradient",
+    "colors": [
+      "#e0f7ff",
+      "#74ebd5",
+      "#acb6e5"
+    ]
+  },
+  {
+    "id": "glacier",
+    "name": "Glacier Blue",
+    "type": "gradient",
+    "colors": [
+      "#83a4d4",
+      "#b6fbff",
+      "#00c6ff"
+    ]
+  },
+  {
+    "id": "storm",
+    "name": "Electric Storm",
+    "type": "gradient",
+    "colors": [
+      "#232526",
+      "#414345",
+      "#7f5af0",
+      "#00d4ff"
+    ]
+  },
+  {
+    "id": "midnight",
+    "name": "Midnight Neon",
+    "type": "gradient",
+    "colors": [
+      "#020024",
+      "#090979",
+      "#00d4ff"
+    ]
+  },
+  {
+    "id": "obsidian",
+    "name": "Obsidian Pink",
+    "type": "gradient",
+    "colors": [
+      "#090909",
+      "#2b1055",
+      "#ff0080"
+    ]
+  },
+  {
+    "id": "galaxy",
+    "name": "Galaxy Core",
+    "type": "gradient",
+    "colors": [
+      "#0f0c29",
+      "#302b63",
+      "#24243e",
+      "#ff00cc"
+    ]
+  },
+  {
+    "id": "nebula",
+    "name": "Nebula Bloom",
+    "type": "gradient",
+    "colors": [
+      "#20002c",
+      "#cbb4d4",
+      "#ff4ecd"
+    ]
+  },
+  {
+    "id": "plasma",
+    "name": "Plasma Wave",
+    "type": "gradient",
+    "colors": [
+      "#ff00cc",
+      "#3333ff",
+      "#00ffff"
+    ]
+  },
+  {
+    "id": "matrix",
+    "name": "Matrix Rain",
+    "type": "gradient",
+    "colors": [
+      "#001f0f",
+      "#00ff41",
+      "#39ff14"
+    ]
+  },
+  {
+    "id": "synthwave",
+    "name": "Synthwave",
+    "type": "gradient",
+    "colors": [
+      "#2b1055",
+      "#7597de",
+      "#ff2d95",
+      "#00f0ff"
+    ]
+  },
+  {
+    "id": "vapor",
+    "name": "Vaporwave",
+    "type": "gradient",
+    "colors": [
+      "#ff71ce",
+      "#01cdfe",
+      "#05ffa1",
+      "#b967ff"
+    ]
+  },
+  {
+    "id": "hologram",
+    "name": "Holographic",
+    "type": "gradient",
+    "colors": [
+      "#00f5ff",
+      "#ff00ff",
+      "#fff000",
+      "#00ff88"
+    ]
+  },
+  {
+    "id": "chrome",
+    "name": "Liquid Chrome",
+    "type": "gradient",
+    "colors": [
+      "#d7d2cc",
+      "#304352",
+      "#00e5ff"
+    ]
+  },
+  {
+    "id": "fire",
+    "name": "Firestorm",
+    "type": "gradient",
+    "colors": [
+      "#ff0000",
+      "#ff7a00",
+      "#ffd000"
+    ]
+  },
+  {
+    "id": "ember",
+    "name": "Ember Glow",
+    "type": "gradient",
+    "colors": [
+      "#4b0000",
+      "#ff3d00",
+      "#ffb300"
+    ]
+  },
+  {
+    "id": "volcano",
+    "name": "Volcanic",
+    "type": "gradient",
+    "colors": [
+      "#200000",
+      "#8f0000",
+      "#ff4d00",
+      "#ffd166"
+    ]
+  },
+  {
+    "id": "jungle",
+    "name": "Jungle Pulse",
+    "type": "gradient",
+    "colors": [
+      "#004d40",
+      "#00c853",
+      "#b2ff59",
+      "#00e676"
+    ]
+  },
+  {
+    "id": "moss",
+    "name": "Mystic Moss",
+    "type": "gradient",
+    "colors": [
+      "#134e5e",
+      "#71b280",
+      "#d4fc79"
+    ]
+  },
+  {
+    "id": "sakura",
+    "name": "Sakura Night",
+    "type": "gradient",
+    "colors": [
+      "#ff758c",
+      "#ff7eb3",
+      "#6a11cb"
+    ]
+  },
+  {
+    "id": "lotus",
+    "name": "Lotus Dawn",
+    "type": "gradient",
+    "colors": [
+      "#fbc2eb",
+      "#a6c1ee",
+      "#00c9a7"
+    ]
+  },
+  {
+    "id": "monsoon",
+    "name": "Monsoon",
+    "type": "gradient",
+    "colors": [
+      "#283c86",
+      "#45a247",
+      "#00c6ff",
+      "#845ec2"
+    ]
   }
 ];
 
